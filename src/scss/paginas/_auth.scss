@@ -1,0 +1,14 @@
+@use 'base/mixins' as m;
+
+
+.auth {
+    @include m.contenedor;
+
+    &__heading {
+
+    }
+
+    &__texto {
+        font-size: 2rem;
+    }
+}
