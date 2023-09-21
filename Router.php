@@ -17,8 +17,8 @@ class Router
         $this->postRoutes[$url] = $fn;
     }
 
-    public function comprobarRutas()
-    {
+    public function comprobarRutas() {
+ 
 
         $url_actual = $_SERVER['PATH_INFO'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
@@ -36,8 +36,8 @@ class Router
         }
     }
 
-    public function render($view, $datos = [])
-    {
+    public function render($view, $datos = []) {
+    
         foreach ($datos as $key => $value) {
             $$key = $value; 
         }
@@ -48,6 +48,17 @@ class Router
 
         $contenido = ob_get_clean(); // Limpia el Buffer
 
-        include_once __DIR__ . '/views/layout.php';
+        // Utilizar el layout de acuerdo a la URl
+       
+        $url_actual = $_SERVER['PATH_INFO'] ?? '/';
+
+        if(str_contains($url_actual, '/admin')) {
+            include_once __DIR__ . '/views/admin-layout.php';
+        } else {
+
+            include_once __DIR__ . '/views/layout.php';
+        }
+
+ 
     }
 }
