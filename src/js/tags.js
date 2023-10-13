@@ -1,4 +1,5 @@
 (function() {
+    
 
     const tagsInput = document.querySelector("#tags_input");
     const tagsDiv = document.querySelector('#tags');
