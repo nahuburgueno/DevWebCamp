@@ -8,10 +8,10 @@
 
 
     // Recuperar del input oculto
-    if(tagsInputHidden.value !== '') {
+    if(tagsInputHidden !== null && tagsInputHidden.value !== '') {
         tags = tagsInputHidden.value.split(',');
         mostrarTags();
-    }
+    } 
 
     if(tagsInput) {
 

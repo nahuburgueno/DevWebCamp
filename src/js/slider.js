@@ -1,8 +1,7 @@
-import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
-// import Swiper and modules styles
+import Swiper, { Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 
 document.addEventListener('DOMContentLoaded', function() {
     if(document.querySelector('.slider')) {
