@@ -6,8 +6,7 @@
                     DevWebCamp es una conferencia para desarrolladores de todos los niveles, y se lleva a cabo de forma presencial y en linea.
                 </p>
         </div>
-
-        <nav class="menu-redes"> 
+<nav class="menu-redes"> 
     <a class="menu-redes__enlace" rel="noopener noreferrer" target="_blank" href="https://facebook.com/C%C3%B3digo-Con-Juan-103341632130628">
         <span class="menu-redes__ocultar">Facebook</span>
     </a> 
@@ -24,7 +23,7 @@
         <span class="menu-redes__ocultar">Tiktok</span>
     </a> 
     <a class="menu-redes__enlace" rel="noopener noreferrer" target="_blank" href="https://github.com/codigoconjuan">
-        <span class="menu-redes__ocultar">Tiktok</span>
+        <span class="menu-redes__ocultar">GitHub</span>
     </a>
 </nav>
     </div>
