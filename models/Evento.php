@@ -15,23 +15,22 @@ class Evento extends ActiveRecord {
     public $hora_id;
     public $ponente_id;
 
-
     public function __construct($args = [])
-    {   
-        $this ->id = $args['id'] ?? null;
-        $this ->nombre = $args['nombre'] ?? '';
-        $this ->descripcion = $args['descripcion'] ?? '';
-        $this ->disponibles = $args['disponibles'] ?? '';
-        $this ->categoria_id = $args['categoria_id'] ?? '';
-        $this ->dia_id = $args['dia_id'] ?? '';
-        $this ->hora_id = $args['hora_id'] ?? '';
-        $this ->ponente_id = $args['ponente_id'] ?? '';
+    {
+        $this->id = $args['id'] ?? null;
+        $this->nombre = $args['nombre'] ?? '';
+        $this->descripcion = $args['descripcion'] ?? '';
+        $this->disponibles = $args['disponibles'] ?? '';
+        $this->categoria_id = $args['categoria_id'] ?? '';
+        $this->dia_id = $args['dia_id'] ?? '';
+        $this->hora_id = $args['hora_id'] ?? '';
+        $this->ponente_id = $args['ponente_id'] ?? '';
     }
 
     // Mensajes de validación para la creación de un evento
     public function validar() {
         if(!$this->nombre) {
-        self::$alertas['error'][] = 'El Nombre es Obligatorio';
+            self::$alertas['error'][] = 'El Nombre es Obligatorio';
         }
         if(!$this->descripcion) {
             self::$alertas['error'][] = 'La descripción es Obligatoria';
@@ -53,6 +52,5 @@ class Evento extends ActiveRecord {
         }
 
         return self::$alertas;
-    }   
-
+    }
 }

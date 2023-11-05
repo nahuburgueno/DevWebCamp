@@ -1,101 +1,92 @@
-(function (){
-
-const ponentesInput = document.querySelector('#ponentes');
+(function() {
+    const ponentesInput = document.querySelector('#ponentes');
 
     if(ponentesInput) {
-
         let ponentes = [];
         let ponentesFiltrados = [];
-        const listadoPonentes = document.querySelector('#listado-ponentes');
-        const ponenteHidden = document.querySelector('[name="ponente_id"]');
+
+        const listadoPonentes = document.querySelector('#listado-ponentes')
+        const ponenteHidden = document.querySelector('[name="ponente_id"]')
 
         obtenerPonentes();
-        ponentesInput.addEventListener('input', buscarPonentes);
+        ponentesInput.addEventListener('input', buscarPonentes)
 
         if(ponenteHidden.value) {
-            (async () => {
-                const ponente = await obtenerPonente(ponenteHidden.value);
+           (async() => {
+                const ponente = await obtenerPonente(ponenteHidden.value)
+                const { nombre, apellido} = ponente
 
-                // Insertar en html
-
-                const ponenteDOM = document.createElement("LI");
+                // Insertar en el HTML
+                const ponenteDOM = document.createElement('LI');
                 ponenteDOM.classList.add('listado-ponentes__ponente', 'listado-ponentes__ponente--seleccionado');
-                ponenteDOM.textContent = `${ponente.nombre} ${ponente.apellido}`;
+                ponenteDOM.textContent = `${nombre} ${apellido}`
 
-                listadoPonentes.appendChild(ponenteDOM);
-            })();
+                listadoPonentes.appendChild(ponenteDOM)
+           })()
         }
-
 
         async function obtenerPonentes() {
             const url = `/api/ponentes`;
             const respuesta = await fetch(url);
             const resultado = await respuesta.json();
-
-            formatearPonentes(resultado);
+            formatearPonentes(resultado)
         }
 
         async function obtenerPonente(id) {
             const url = `/api/ponente?id=${id}`;
-            const respuesta = await fetch(url);
-            const resultado = await respuesta.json();
-            return resultado
+            const respuesta = await fetch(url)
+            const resultado = await respuesta.json()
+            return resultado;
         }
 
         function formatearPonentes(arrayPonentes = []) {
             ponentes = arrayPonentes.map( ponente => {
                 return {
-                    nombre:`${ponente.nombre.trim()} ${ponente.apellido.trim()}`,
+                    nombre: `${ponente.nombre.trim()} ${ponente.apellido.trim()}`,
                     id: ponente.id
-                }
-            });
+                } 
+            })
         }
 
         function buscarPonentes(e) {
-
             const busqueda = e.target.value;
 
-            if ( busqueda.length > 3 ) {
+            if(busqueda.length > 3) {
                 const expresion = new RegExp(busqueda, "i");
-                ponentesFiltrados = ponentes.filter( ponente => {
-                    if ( ponente.nombre.toLowerCase().search(expresion) != -1 ) {
+                ponentesFiltrados = ponentes.filter(ponente => {
+                    if(ponente.nombre.toLowerCase().search(expresion) != -1) {
                         return ponente
                     }
                 })
             } else {
-                ponentesFiltrados = [];
+                ponentesFiltrados = []
             }
+
             mostrarPonentes();
         }
-
 
         function mostrarPonentes() {
 
             while(listadoPonentes.firstChild) {
-                listadoPonentes.removeChild(listadoPonentes.firstChild);
+                listadoPonentes.removeChild(listadoPonentes.firstChild)
             }
 
             if(ponentesFiltrados.length > 0) {
-
-                
-                ponentesFiltrados.forEach( ponente => {
+                ponentesFiltrados.forEach(ponente => {
                     const ponenteHTML = document.createElement('LI');
-                    ponenteHTML.classList.add('listado-ponentes__ponente');
+                    ponenteHTML.classList.add('listado-ponentes__ponente')
                     ponenteHTML.textContent = ponente.nombre;
-                    ponenteHTML.dataset.ponenteId = ponente.id;
+                    ponenteHTML.dataset.ponenteId = ponente.id
+                    ponenteHTML.onclick = seleccionarPonente
 
-                    ponenteHTML.onclick = seleccionarPonente;
-
-                // Añadir al DOM
-                listadoPonentes.appendChild(ponenteHTML);
-
-                });
+                    // Añadir al dom
+                    listadoPonentes.appendChild(ponenteHTML)
+                })
             } else {
-                const noResultados = document.createElement('P');
-                noResultados.classList.add('listado-ponentes__no-resultado');
-                noResultados.textContent = 'No hay resultados para tu búsqueda';
-
-                listadoPonentes.appendChild(noResultados);
+                const noResultados = document.createElement('P')
+                noResultados.classList.add('listado-ponentes__no-resultado')
+                noResultados.textContent = 'No hay resultados para tu búsqueda'
+                listadoPonentes.appendChild(noResultados)              
             }
         }
 
@@ -103,16 +94,13 @@ const ponentesInput = document.querySelector('#ponentes');
             const ponente = e.target;
 
             // Remover la clase previa
-
-            const ponentePrevio = document.querySelector('.listado-ponentes__ponente--seleccionado');
-
-            if ( ponentePrevio ) {
-                ponentePrevio.classList.remove('listado-ponentes__ponente--seleccionado');
+            const ponentePrevio = document.querySelector('.listado-ponentes__ponente--seleccionado')
+            if(ponentePrevio) {
+                ponentePrevio.classList.remove('listado-ponentes__ponente--seleccionado')
             }
-            ponente.classList.add("listado-ponentes__ponente--seleccionado");
-            ponenteHidden.value = ponente.dataset.ponenteId;
+            ponente.classList.add('listado-ponentes__ponente--seleccionado')
+
+            ponenteHidden.value = ponente.dataset.ponenteId
         }
-
     }
-
 })();

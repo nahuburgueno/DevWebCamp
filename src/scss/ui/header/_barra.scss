@@ -17,6 +17,6 @@
 
     &__logo {
         @include m.logo;
-        @include m.texto-fluido(2rem, 3rem);
+        @include m.texto-fluido(1rem, 3rem);
     }
 }

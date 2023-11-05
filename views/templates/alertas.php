@@ -1,12 +1,9 @@
-<?php 
-
-    foreach( $alertas as $key => $alerta ) {
+<?php
+    foreach($alertas as $key => $alerta) {
         foreach($alerta as $mensaje) {
 ?>
-
-            <div class="alerta alerta__<?php echo $key; ?>"><?php echo $mensaje; ?></div>
-       
-<?php      
+    <div class="alerta alerta__<?php echo $key; ?>"><?php echo $mensaje; ?></div>
+<?php 
         }
     }
 ?>

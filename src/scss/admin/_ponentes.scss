@@ -2,8 +2,7 @@
 @use 'base/variables' as v;
 
 .listado-ponentes {
-    
-    @include m.reset-lista();
+    @include m.reset-lista;
     @include m.grid(1, 1rem);
 
     &__ponente {
@@ -23,6 +22,4 @@
             color: v.$blanco;
         }
     }
-
-    
 }
