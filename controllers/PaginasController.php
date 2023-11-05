@@ -48,7 +48,6 @@ class PaginasController {
 
 
         // Obtener todos los ponentes
-
         $ponentes = Ponente::all();
 
 

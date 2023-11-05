@@ -29,4 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
         Swiper.use([Navigation])
         new Swiper('.slider', opciones)
     }
-});
+}); 
+
+
