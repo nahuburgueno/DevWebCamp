@@ -1,7 +1,7 @@
 if(document.querySelector('#mapa')) {
 
     const lng = -34.8841415
-    const lat = -56.1590952
+    const lat = -56.1616701
     const zoom = 15
 
     const map = L.map('mapa').setView([lat, lng], zoom);
